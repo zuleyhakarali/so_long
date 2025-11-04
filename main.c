@@ -57,7 +57,6 @@ static void reading(char **av, t_long *game)
         error();
     game->map[i] = NULL;
     game->m_height = i;
-    game->m_width = ft_strlen(game->map[0]);
     close(fd);
 }
 
@@ -91,7 +90,11 @@ int main(int ac, char **av)
     game = malloc(sizeof(t_long));
     is_valid(ac, av);
     reading(av, game);
+    game->m_width = ft_strlen(game->map[0]);
+    if (game->map[0][game->m_width - 1] == '\n')
+        game->m_width--;
     is_map_valid(game);
     find_p_pos(game);
-
+    find_Coll(game);
+    mlx_part(game);
 }

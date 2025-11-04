@@ -1,8 +1,13 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# ifndef SIZE
+#  define SIZE 32
+# endif
+
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
+#include "minilibx-linux/mlx.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -16,14 +21,21 @@ typedef struct s_long
     int m_width; //map width
     int player_x; //player x position
     int player_y; //player y position
-    int Coll; //collectible
-    void *mlibx; //minilibx ana pointer
+    int coll;
+    void *mlx; //minilibx ana pointer
     void *window; //oyun penceresi
+    void *iwall;
+    void *ifloor;
+    void *icoll;
+    void *iexit;
+    void *iplayer;
 } t_long;
 
 
 int main(int ac, char **av);
 void is_map_valid(t_long *game);
 void error(void);
+void find_Coll(t_long *game);
+void mlx_part(t_long *game);
 
 #endif
