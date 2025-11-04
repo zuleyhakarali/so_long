@@ -1,0 +1,71 @@
+#include "so_long.h"
+
+static void check_fir_las_wid(t_long *game, int i)
+{
+    int j;
+
+    j = 0;
+    if (i == 0 || game->map[i + 1] == NULL)
+    {
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] != '\n')
+                    break;
+            if (game->map[i][j] != '1')
+                error();
+            j++;
+        }
+    }
+}
+
+static void check_fir_las_heig(t_long *game, int i)
+{
+    int len;
+
+    len = ft_strlen(game->map[i]);
+    if ((game->map[i][0] != '1') || (game->map[i][len - 2] != '1'))
+        error();
+}
+
+static void check_P_E_C(t_long *game)
+{
+    int i;
+    int j;
+    int c;
+    int e;
+    int p;
+
+    i = 0;
+    c = 0;
+    e = 0;
+    p = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j++])
+        {
+            c += (game->map[i][j] == 'C');
+            e += (game->map[i][j] == 'E');
+            p += (game->map[i][j] == 'P');
+        }
+        i++;
+    }
+    if (c == 0 || e == 0 || p != 1)
+        error();
+}
+
+void is_map_valid(t_long *game)
+{
+    int i;
+
+    i = 0;
+    while (game->map[i])
+    {
+        if (game->m_width != (int)ft_strlen(game->map[i]))
+            error();
+        check_fir_las_wid(game, i);
+        check_fir_las_heig(game, i);
+        check_P_E_C(game);
+        i++;
+    }
+}
