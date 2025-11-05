@@ -35,7 +35,12 @@ typedef struct s_long
 int main(int ac, char **av);
 void is_map_valid(t_long *game);
 void error(void);
-void find_Coll(t_long *game);
+void find_coll(t_long *game);
 void mlx_part(t_long *game);
+void placement(t_long *game);
+void up(t_long *game);
+void down(t_long *game);
+void right(t_long *game);
+void left(t_long *game);
 
 #endif

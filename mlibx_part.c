@@ -1,47 +1,27 @@
 #include "so_long.h"
 
-static void sec_placement(t_long *game, char c, int j, int i)
+static int key_input(int input, t_long *game)
 {
-    if (c == 1)
-        mlx_put_image_to_window(game->mlx, game->window, game->iwall,
-                                j * SIZE, i * SIZE);
-    else
-        mlx_put_image_to_window(game->mlx, game->window, game->ifloor,
-                                j * SIZE, i * SIZE);
-}
-
-static void placement(t_long *game)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (game->map[i])
+    if (input == 65307) //esc
     {
-        j = 0;
-        while (game->map[i][j++])
-        {
-            if (game->map[i][j] == '1')
-                sec_placement(game, '1', j, i);
-            if (game->map[i][j] == '0')
-                sec_placement(game, '0', j, i);
-            if (game->map[i][j] == 'P')
-                mlx_put_image_to_window(game->mlx, game->window, game->iplayer,
-                                        j * SIZE, i * SIZE);
-            if (game->map[i][j] == 'C')
-                mlx_put_image_to_window(game->mlx, game->window, game->icoll,
-                                        j * SIZE, i * SIZE);
-            if (game->map[i][j] == 'E')
-                mlx_put_image_to_window(game->mlx, game->window, game->iexit,
-                                        j * SIZE, i * SIZE);
-        }
-        i++;
+        //free kısımları eklenecek, oyundan çıkarken
+        exit(0);
     }
+    if (input == 119 || input == 65362) //w
+        up(game);
+    if (input == 115 || input == 65364) //s
+        down(game);
+    if (input == 100 || input == 65363) //d
+        right(game);
+    if (input == 97 || input == 65361) //a
+        left(game);
+    return (0);
 }
 
 static void for_mlx_hooks(t_long *game)
 {
-    
+    mlx_hook(game->window, 2, 1L << 0, key_input, game);
+    mlx_hook(game->window, 17, 0, close, game);
 }
 
 void mlx_part(t_long *game)

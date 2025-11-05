@@ -2,7 +2,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux
 
-SRC = main.c is_valid.c utils.c mlibx_part.c
+SRC = main.c is_valid.c utils.c mlibx_part.c move.c
 OBJS = $(SRC:.c=.o)
 
 LIB = libft/libft.a

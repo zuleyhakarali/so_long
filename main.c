@@ -95,6 +95,6 @@ int main(int ac, char **av)
         game->m_width--;
     is_map_valid(game);
     find_p_pos(game);
-    find_Coll(game);
+    find_coll(game);
     mlx_part(game);
 }
