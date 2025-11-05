@@ -6,15 +6,17 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 15:52:04 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/24 13:56:49 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/06/26 19:18:28 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 long	ft_atoi(const char *nptr)
 {
 	long	i;
 	long	result;
-	int		sign;
+	int	sign;
 
 	i = 0;
 	result = 0;
@@ -29,6 +31,8 @@ long	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
+		if ( result > (LONG_MAX - (nptr[i] - '0')) / 10)
+			return (sign == 1 ? LONG_MAX : LONG_MIN);
 		result = result * 10 + (nptr[i] - '0');
 		i++;
 	}

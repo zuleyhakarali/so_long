@@ -19,7 +19,7 @@ static void for_placement(int i, int *size, t_long *game)
     char **tmp;
 
     *size *= 2;
-    tmp = malloc(sizeof(char *) * (*size));
+    tmp = malloc(sizeof(char *) * (*size + 1));
     if (!tmp)
         return ;
     j = 0;
@@ -44,7 +44,7 @@ static void reading(char **av, t_long *game)
         error();
     i = 0;
     size = 2;
-    game->map = malloc(sizeof(char *) * size);
+    game->map = malloc(sizeof(char *) * (size + 1));
     if (!game->map)
         return ;
     while ((line = get_next_line(fd)))
@@ -73,8 +73,8 @@ static void find_p_pos(t_long *game)
         {
             if (game->map[i][j] == 'P')
             {
-                game->player_x = i;
-                game->player_y = j;
+                game->player_y = i;
+                game->player_x = j;
                 return ;
             }
             j++;

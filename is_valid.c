@@ -75,7 +75,7 @@ void is_map_valid(t_long *game)
         check_len(game, i);
         check_fir_las_wid(game, i);
         check_fir_las_heig(game, i);
-        check_P_E_C(game);
         i++;
     }
+    check_P_E_C(game);
 }

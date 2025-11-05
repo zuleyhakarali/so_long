@@ -1,11 +1,9 @@
 #include "so_long.h"
 
-void win(t_long *game)
+static void win(t_long *game)
 {
     write(1, "You Have Successfully Completed the Game\n", 41);
-    //free kısmı
-    mlx_clear_window(game->mlx, game->window);
-    exit(0);
+    free_part(game);
 }
 
 void up(t_long *game)
@@ -15,11 +13,11 @@ void up(t_long *game)
 
     x = game->player_x;
     y = game->player_y - 1;
-    if (game->map[x][y] == '1')
+    if (game->map[y][x] == '1')
         return ;
-    else if (game->map[x][y] == 'C')
+    else if (game->map[y][x] == 'C')
         game->coll--;
-    else if (game->map[x][y] == 'E')
+    else if (game->map[y][x] == 'E')
     {
         if (game->coll == 0)
             win(game);
@@ -27,7 +25,7 @@ void up(t_long *game)
             return ;
     }
     game->map[game->player_y][game->player_x] = '0';
-    game->map[x][y] = 'P';
+    game->map[y][x] = 'P';
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
@@ -40,11 +38,11 @@ void down(t_long *game)
 
     x = game->player_x;
     y = game->player_y + 1;
-    if (game->map[x][y] == '1')
+    if (game->map[y][x] == '1')
         return ;
-    else if (game->map[x][y] == 'C')
+    else if (game->map[y][x] == 'C')
         game->coll--;
-    else if (game->map[x][y] == 'E')
+    else if (game->map[y][x] == 'E')
     {
         if (game->coll == 0)
             win(game);
@@ -52,7 +50,7 @@ void down(t_long *game)
             return ;
     }
     game->map[game->player_y][game->player_x] = '0';
-    game->map[x][y] = 'P';
+    game->map[y][x] = 'P';
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
@@ -65,11 +63,11 @@ void right(t_long *game)
 
     x = game->player_x + 1;
     y = game->player_y;
-    if (game->map[x][y] == '1')
+    if (game->map[y][x] == '1')
         return ;
-    else if (game->map[x][y] == 'C')
+    else if (game->map[y][x] == 'C')
         game->coll--;
-    else if (game->map[x][y] == 'E')
+    else if (game->map[y][x] == 'E')
     {
         if (game->coll == 0)
             win(game);
@@ -77,7 +75,7 @@ void right(t_long *game)
             return ;
     }
     game->map[game->player_y][game->player_x] = '0';
-    game->map[x][y] = 'P';
+    game->map[y][x] = 'P';
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
@@ -90,11 +88,11 @@ void left(t_long *game)
 
     x = game->player_x - 1;
     y = game->player_y;
-    if (game->map[x][y] == '1')
+    if (game->map[y][x] == '1')
         return ;
-    else if (game->map[x][y] == 'C')
+    else if (game->map[y][x] == 'C')
         game->coll--;
-    else if (game->map[x][y] == 'E')
+    else if (game->map[y][x] == 'E')
     {
         if (game->coll == 0)
             win(game);
@@ -102,7 +100,7 @@ void left(t_long *game)
             return ;
     }
     game->map[game->player_y][game->player_x] = '0';
-    game->map[x][y] = 'P';
+    game->map[y][x] = 'P';
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
     placement(game);

@@ -42,5 +42,6 @@ void up(t_long *game);
 void down(t_long *game);
 void right(t_long *game);
 void left(t_long *game);
+void free_part(t_long *game);
 
 #endif

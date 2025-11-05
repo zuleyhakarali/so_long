@@ -1,12 +1,32 @@
 #include "so_long.h"
 
+void free_part(t_long *game)
+{
+    int i;
+
+    mlx_destroy_image(game->mlx, game->iwall);
+    mlx_destroy_image(game->mlx, game->ifloor);
+    mlx_destroy_image(game->mlx, game->icoll);
+    mlx_destroy_image(game->mlx, game->iplayer);
+    mlx_destroy_image(game->mlx, game->iexit);
+    mlx_destroy_window(game->mlx, game->window);
+    mlx_destroy_display(game->mlx);
+    free(game->mlx);
+    i = 0;
+    while (game->map[i])
+    {
+        free(game->map[i]);
+        i++;
+    }
+    free(game->map);
+    free(game);
+    exit(0);
+}
+
 static int key_input(int input, t_long *game)
 {
     if (input == 65307) //esc
-    {
-        //free kısımları eklenecek, oyundan çıkarken
-        exit(0);
-    }
+        free_part(game);
     if (input == 119 || input == 65362) //w
         up(game);
     if (input == 115 || input == 65364) //s
