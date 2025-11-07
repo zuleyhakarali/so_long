@@ -4,6 +4,7 @@ void free_part(t_long *game)
 {
     int i;
 
+    mlx_loop_end(game->mlx);
     mlx_destroy_image(game->mlx, game->iwall);
     mlx_destroy_image(game->mlx, game->ifloor);
     mlx_destroy_image(game->mlx, game->icoll);
@@ -41,7 +42,7 @@ static int key_input(int input, t_long *game)
 static void for_mlx_hooks(t_long *game)
 {
     mlx_hook(game->window, 2, 1L << 0, key_input, game);
-    mlx_hook(game->window, 17, 0, close, game);
+    mlx_hook(game->window, 17, 0, close, game); //close yok daha
 }
 
 void mlx_part(t_long *game)
@@ -53,7 +54,7 @@ void mlx_part(t_long *game)
     he = 0;
     game->mlx = mlx_init();
     if (!game->mlx)
-        error();
+        error(game, 1);
     game->window = mlx_new_window(game->mlx, game->m_width * SIZE, 
                     game->m_height * SIZE, "so_long");
     game->iwall = mlx_xpm_file_to_image(game->mlx, "XPM/wall.xpm", &wi, &he);
@@ -63,7 +64,7 @@ void mlx_part(t_long *game)
     game->iplayer = mlx_xpm_file_to_image(game->mlx, "XPM/plyr.xpm", &wi, &he);
     if (game->window == NULL || game->iwall == NULL || game->ifloor == NULL ||
         game->icoll == NULL || game->iexit == NULL || game->iplayer == NULL)
-        error();
+        error(game, 2);
     placement(game);
     for_mlx_hooks(game);
     mlx_loop(game->mlx);
