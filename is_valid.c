@@ -38,34 +38,6 @@ static void check_fir_las_heig(t_long *game, int i)
         error(game, 1);
 }
 
-static void check_P_E_C(t_long *game)
-{
-    int i;
-    int j;
-    int c;
-    int e;
-    int p;
-
-    i = 0;
-    c = 0;
-    e = 0;
-    p = 0;
-    while (game->map[i])
-    {
-        j = 0;
-        while (game->map[i][j])
-        {
-            c += (game->map[i][j] == 'C');
-            e += (game->map[i][j] == 'E');
-            p += (game->map[i][j] == 'P');
-            j++;
-        }
-        i++;
-    }
-    if (c == 0 || e != 1 || p != 1)
-        error(game, 1);
-}
-
 static void check_valid_chars(t_long *game, int i)
 {
     int j;

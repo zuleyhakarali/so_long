@@ -26,23 +26,24 @@ void free_part(t_long *game)
 
 static int key_input(int input, t_long *game)
 {
-    if (input == 65307) //esc
+    if (input == 65307)
         free_part(game);
-    if (input == 119 || input == 65362) //w
+    if (input == 119 || input == 65362)
         up(game);
-    if (input == 115 || input == 65364) //s
+    if (input == 115 || input == 65364)
         down(game);
-    if (input == 100 || input == 65363) //d
+    if (input == 100 || input == 65363)
         right(game);
-    if (input == 97 || input == 65361) //a
+    if (input == 97 || input == 65361)
         left(game);
     return (0);
 }
 
-static void for_mlx_hooks(t_long *game)
+static int for_x(t_long *game)
 {
-    mlx_hook(game->window, 2, 1L << 0, key_input, game);
-    mlx_hook(game->window, 17, 0, close, game); //close yok daha
+    write(1, "Game closed\n", 12);
+    free_part(game);
+    return (0);
 }
 
 void mlx_part(t_long *game)
@@ -66,6 +67,7 @@ void mlx_part(t_long *game)
         game->icoll == NULL || game->iexit == NULL || game->iplayer == NULL)
         error(game, 2);
     placement(game);
-    for_mlx_hooks(game);
+    mlx_hook(game->window, 2, 1L << 0, key_input, game);
+    mlx_hook(game->window, 17, 0, for_x, game);
     mlx_loop(game->mlx);
 }

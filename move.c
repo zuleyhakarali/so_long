@@ -4,8 +4,6 @@ static void win(t_long *game)
 {
     write(1, "You Have Successfully Completed the Game\n", 41);
     free_part(game);
-    printf("3\n");
-    fflush(stdout);
 }
 
 void up(t_long *game)

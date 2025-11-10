@@ -70,3 +70,31 @@ void is_exit_reachable(t_long *game)
         free(tmp[i++]);
     free(tmp);
 }
+
+void check_P_E_C(t_long *game)
+{
+    int i;
+    int j;
+    int c;
+    int e;
+    int p;
+
+    i = 0;
+    c = 0;
+    e = 0;
+    p = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            c += (game->map[i][j] == 'C');
+            e += (game->map[i][j] == 'E');
+            p += (game->map[i][j] == 'P');
+            j++;
+        }
+        i++;
+    }
+    if (c == 0 || e != 1 || p != 1)
+        error(game, 1);
+}
