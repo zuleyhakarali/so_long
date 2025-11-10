@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-#include <stdio.h>
-
 typedef struct s_long
 {
     char **map;
@@ -30,7 +28,6 @@ typedef struct s_long
     void *iexit;
     void *iplayer;
 } t_long;
-
 
 int main(int ac, char **av);
 void is_map_valid(t_long *game);
