@@ -2,6 +2,8 @@
 
 static void win(t_long *game)
 {
+    game->move++;
+    ft_printf("%d\n", game->move);
     write(1, "You Have Successfully Completed the Game\n", 41);
     free_part(game);
 }
@@ -29,6 +31,8 @@ void up(t_long *game)
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
+    game->move++;
+    ft_printf("%d\n", game->move);
 }
 
 void down(t_long *game)
@@ -54,6 +58,8 @@ void down(t_long *game)
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
+    game->move++;
+    ft_printf("%d\n", game->move);
 }
 
 void right(t_long *game)
@@ -79,6 +85,8 @@ void right(t_long *game)
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
+    game->move++;
+    ft_printf("%d\n", game->move);
 }
 
 void left(t_long *game)
@@ -104,4 +112,6 @@ void left(t_long *game)
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
     placement(game);
+    game->move++;
+    ft_printf("%d\n", game->move);
 }

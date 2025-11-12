@@ -46,6 +46,12 @@ static int for_x(t_long *game)
     return (0);
 }
 
+static int loop(t_long *game)
+{
+    placement(game);
+    return (0);
+}
+
 void mlx_part(t_long *game)
 {
     int wi;
@@ -54,6 +60,7 @@ void mlx_part(t_long *game)
     game->mlx = mlx_init();
     if (!game->mlx)
         error(game, 1);
+    game->move = 0;
     game->window = mlx_new_window(game->mlx, game->m_width * SIZE, 
                     game->m_height * SIZE, "so_long");
     game->iwall = mlx_xpm_file_to_image(game->mlx, "XPM/wall.xpm", &wi, &he);
@@ -67,5 +74,6 @@ void mlx_part(t_long *game)
     placement(game);
     mlx_hook(game->window, 2, 1, key_input, game);
     mlx_hook(game->window, 17, 0, for_x, game);
+    mlx_loop_hook(game->mlx, loop, game);
     mlx_loop(game->mlx);
 }
