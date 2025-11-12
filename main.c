@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void is_valid(int ac, char **av, t_long *game)
+static void is_maps_name_valid(int ac, char **av, t_long *game)
 {
     char *s;
 
@@ -89,7 +89,7 @@ int main(int ac, char **av)
     game = malloc(sizeof(t_long));
     if (!game)
         return (1);
-    is_valid(ac, av, game);
+    is_maps_name_valid(ac, av, game);
     reading(av, game);
     game->m_width = ft_strlen(game->map[0]);
     if (game->map[0][game->m_width - 1] == '\n')

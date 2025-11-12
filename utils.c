@@ -58,10 +58,7 @@ void is_maps_playable(t_long *game)
         (tmp[i + 1][j] == '1' || tmp[i + 1][j] == 'E') &&
         (tmp[i][j - 1] == '1' || tmp[i][j - 1] == 'E') && 
         (tmp[i][j + 1] == '1' || tmp[i][j + 1] == 'E'))
-    {
-        write(2, "Map is Not Playable\n", 20);
         error(game, 1);
-    }
 }
 
 static void sec_placement(t_long *game, char c, int j, int i)

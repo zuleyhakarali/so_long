@@ -51,8 +51,6 @@ void mlx_part(t_long *game)
     int wi;
     int he;
 
-    wi = 0;
-    he = 0;
     game->mlx = mlx_init();
     if (!game->mlx)
         error(game, 1);
@@ -67,7 +65,7 @@ void mlx_part(t_long *game)
         game->icoll == NULL || game->iexit == NULL || game->iplayer == NULL)
         error(game, 2);
     placement(game);
-    mlx_hook(game->window, 2, 1L << 0, key_input, game);
+    mlx_hook(game->window, 2, 1, key_input, game);
     mlx_hook(game->window, 17, 0, for_x, game);
     mlx_loop(game->mlx);
 }
