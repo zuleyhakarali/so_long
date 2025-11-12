@@ -30,7 +30,6 @@ void up(t_long *game)
     game->map[y][x] = 'P';
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
-    placement(game);
     game->move++;
     ft_printf("%d\n", game->move);
 }
@@ -57,7 +56,6 @@ void down(t_long *game)
     game->map[y][x] = 'P';
     game->player_y = y;
     mlx_clear_window(game->mlx, game->window);
-    placement(game);
     game->move++;
     ft_printf("%d\n", game->move);
 }
@@ -84,7 +82,6 @@ void right(t_long *game)
     game->map[y][x] = 'P';
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
-    placement(game);
     game->move++;
     ft_printf("%d\n", game->move);
 }
@@ -111,7 +108,6 @@ void left(t_long *game)
     game->map[y][x] = 'P';
     game->player_x = x;
     mlx_clear_window(game->mlx, game->window);
-    placement(game);
     game->move++;
     ft_printf("%d\n", game->move);
 }

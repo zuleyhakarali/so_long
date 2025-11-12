@@ -71,7 +71,6 @@ void mlx_part(t_long *game)
     if (game->window == NULL || game->iwall == NULL || game->ifloor == NULL ||
         game->icoll == NULL || game->iexit == NULL || game->iplayer == NULL)
         error(game, 2);
-    placement(game);
     mlx_hook(game->window, 2, 1, key_input, game);
     mlx_hook(game->window, 17, 0, for_x, game);
     mlx_loop_hook(game->mlx, loop, game);
