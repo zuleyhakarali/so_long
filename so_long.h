@@ -45,5 +45,6 @@ void left(t_long *game);
 void free_part(t_long *game);
 void is_maps_playable(t_long *game);
 void is_exit_reachable(t_long *game);
+void image(t_long *game);
 
 #endif

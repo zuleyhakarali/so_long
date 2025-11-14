@@ -2,18 +2,15 @@
 
 static void fill(char **tmp, int y, int x)
 {
-    char p;
-
-    p = 'p';
     if (y < 0 || x < 0 || tmp[y][x] == '1' || tmp[y][x] == '\0' 
-        || tmp[y][x] == 'p')
+        || tmp[y][x] == 'f')
         return ;
     if (tmp[y][x] == 'E')
     {
-        tmp[y][x] = 'p';
+        tmp[y][x] = 'f';
         return ;
     }
-    tmp[y][x] = p;
+    tmp[y][x] = 'f';
     fill(tmp, y - 1, x);
     fill(tmp, y + 1, x);
     fill(tmp, y, x - 1);

@@ -54,23 +54,18 @@ static int loop(t_long *game)
 
 void mlx_part(t_long *game)
 {
-    int wi;
-    int he;
-
     game->mlx = mlx_init();
     if (!game->mlx)
         error(game, 1);
     game->move = 0;
     game->window = mlx_new_window(game->mlx, game->m_width * SIZE, 
                     game->m_height * SIZE, "so_long");
-    game->iwall = mlx_xpm_file_to_image(game->mlx, "XPM/wall.xpm", &wi, &he);
-    game->ifloor = mlx_xpm_file_to_image(game->mlx, "XPM/floor.xpm", &wi, &he);
-    game->icoll = mlx_xpm_file_to_image(game->mlx, "XPM/coll.xpm", &wi, &he);
-    game->iexit = mlx_xpm_file_to_image(game->mlx, "XPM/exit.xpm", &wi, &he);
-    game->iplayer = mlx_xpm_file_to_image(game->mlx, "XPM/plyr.xpm", &wi, &he);
-    if (game->window == NULL || game->iwall == NULL || game->ifloor == NULL ||
-        game->icoll == NULL || game->iexit == NULL || game->iplayer == NULL)
+    if (!game->window)
+    {
+        mlx_destroy_display(game->mlx);        
         error(game, 2);
+    }
+    image(game);
     mlx_hook(game->window, 2, 1, key_input, game);
     mlx_hook(game->window, 17, 0, for_x, game);
     mlx_loop_hook(game->mlx, loop, game);

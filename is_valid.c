@@ -57,7 +57,11 @@ static void check_valid_chars(t_long *game, int i)
 void is_map_valid(t_long *game)
 {
     int i;
+    int len;
 
+    len = game->m_height - 1;
+    if (game->map[len][ft_strlen(game->map[len]) - 1] == '\n')
+        error(game, 1);
     i = 0;
     while (game->map[i])
     {
