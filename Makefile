@@ -30,7 +30,7 @@ $(MLX):
 	$(MAKE) -C minilibx-linux
 
 clean:
-	rm -f $(OBJS) $(GNL_O)
+	rm -f $(OBJS)
 	$(MAKE) -C libft clean
 	$(MAKE) -C ft_printf clean
 	$(MAKE) -C get_next_line clean
