@@ -16,11 +16,11 @@ BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
-bonus:	$(OBJS) $(BONUS_OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+
+#bonus:	$(OBJS) $(BONUS_OBJS)
+#	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
